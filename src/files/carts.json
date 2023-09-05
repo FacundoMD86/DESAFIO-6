@@ -1,0 +1,117 @@
+[
+	{
+		"id": "1",
+		"title": "sigas 32",
+		"description": "fusion",
+		"code": "10",
+		"price": "10000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "2",
+		"title": "sigas 20",
+		"description": "fusion",
+		"code": "11",
+		"price": "8000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "3",
+		"title": "sigas 25",
+		"description": "fusion",
+		"code": "12",
+		"price": "9000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "4",
+		"title": "sigas 32",
+		"description": "fusion",
+		"code": "13",
+		"price": "10000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "5",
+		"title": "sigas 40",
+		"description": "fusion",
+		"code": "14",
+		"price": "11000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "6",
+		"title": "sigas 50",
+		"description": "fusion",
+		"code": "15",
+		"price": "12000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "7",
+		"title": "sigas 60",
+		"description": "fusion",
+		"code": "16",
+		"price": "13000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "8",
+		"title": "sigas 63",
+		"description": "fusion",
+		"code": "17",
+		"price": "14000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "9",
+		"title": "sigas 75",
+		"description": "fusion",
+		"code": "18",
+		"price": "15000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"id": "10",
+		"title": "sigas 90",
+		"description": "fusion",
+		"code": "19",
+		"price": "20000",
+		"status": "Boolean",
+		"stock": "100",
+		"category": "caños",
+		"thumbnail": null
+	},
+	{
+		"title": "sigas 110",
+		"stock": "100",
+		"id": "101"
+	}
+]
