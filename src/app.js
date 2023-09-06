@@ -4,7 +4,6 @@ import __dirname from './utils.js';
 import handlebars from 'express-handlebars';
 import { Server } from 'socket.io';
 //import './dao/dbConfig.js'
-
 import viewRouter from './router/view.router.js';
 import ProductRouter from "./router/product.router.js";
 import CartRouter from "./router/carts.router.js";
@@ -14,8 +13,8 @@ import notFoundHandler from './midlewares/notFoundHandler.js';
 import indexRouter from './router/indexRouter.js';
 import ProductMongoManager from "./dao/mongomanagers/productManagerMongo.js";
 import MessagesManager from "./dao/mongomanagers/messageManagerMongo.js";
-
 import ProductManager from './productos/ProductsManager.js';
+import router from "./router/view.router.js";
 
 const productManager = new ProductManager("./src/files/Productos.json");
 
@@ -54,6 +53,7 @@ app.use("/api/view", viewRouter);
 app.use('/api', indexRouter)
 app.use(errorHandler);
 app.use(notFoundHandler);
+app.use("/",router);
 
 const server = app.listen(PORT, () =>{
     console.log(`Express por Local Host ${server.address().port}`)
@@ -96,7 +96,11 @@ socketServer.on("connection",async (socket)=>{
        socket.on("disconnect",()=>{
            console.log(`Usuario con ID : ${socket.id} esta desconectado `)
        })
-   
+       socket.on("chatear",obj=>{
+        base.push(obj)
+        socketServer.emit("chatupdate",base)
+    
+      })
        socket.on("mensaje", async (info) => {
         // Guardar el mensaje utilizando el MessagesManager
         console.log(info)

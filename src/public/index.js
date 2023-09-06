@@ -4,6 +4,33 @@ import CartManager from '../productos/CartManager.js';
 const deposito = new ProductsManager('./files/Productos.json');
 const cartDepo = new CartManager('./files/carts.json');
 
+const socketClient=io()
+
+const formulario =document.getElementById("formulario")
+const usuario =document.getElementById("usuario")
+const mensaje =document.getElementById("mensaje")
+const chat =document.getElementById("chat")
+
+
+formulario.onsubmit=(e)=>{
+    e.preventDefault()
+    const user=usuario.value
+    const message=mensaje.value
+    const obj={
+        user,message
+    }
+
+    socketClient.emit("chatear",obj)
+}
+
+socketClient.on("chatupdate",(obj)=>{
+   
+    const chatrender=obj.map(e=>
+        {return `<p>${e.user} dice : ${e.message}</p>`}).join(" ")
+        chat.innerHTML=chatrender
+
+})
+
 const env = async () => {
     try {
         const productos = await deposito.getProduct();
@@ -21,7 +48,7 @@ const env = async () => {
             status: true,
             stock: '100',
             category: 'caños',
-            thumbnail: 'https://www.grupodema.com.ar/uploads/documents/074dca2aedab1605449ad75cba9237bcdb1b8318.png', 
+            thumbnail:[], 
         };
 
     await deposito.createProduct(producto);
