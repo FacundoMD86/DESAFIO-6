@@ -118,5 +118,15 @@
 		"category": "Gas",
 		"thumbnail": "https://www.sakurasa.com/sistema/imagenes/articulos/0007433.jpg?1618956683",
 		"id": "101"
+	},
+	{
+		"title": "Filtro GN",
+		"description": "filtro de cañeria",
+		"code": "200",
+		"price": "65000",
+		"stock": "5",
+		"category": "Filtros",
+		"thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_787777-MLA71397784497_082023-F.webp",
+		"id": "1011"
 	}
 ]

@@ -1,5 +1,5 @@
-import { Router } from  "express"
-import ProductManager from "../productos/ProductsManager.js"
+import { Router } from  "express";
+import ProductManager from "../productos/ProductsManager.js";
 import __dirname  from "../utils.js"
 
 const pmanager=new ProductManager(__dirname+'/files/products.json')
@@ -13,12 +13,13 @@ router.get("/",async(req,res)=>{
 })
 
 router.get("/realtimeproducts",async(req,res)=>{
-   res.render("realtimeproducts");
+   res.render("realtimeproducts")
+})   
 
-   router.get("/",(req,res)=>{
+router.get("/",(req,res)=>{
       res.render("chat")
-   })   
+})   
 
-})
+
 
 export default router
