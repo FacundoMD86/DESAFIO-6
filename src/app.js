@@ -45,6 +45,9 @@ app.set('view engine', 'handlebars');
 app.get("/", (req, res)=>{
     res.render("realtimeproducts");
 });
+app.get("/", (req, res)=>{
+  res.render("chat");
+});
 
 //Routers
 app.use("/api/products", ProductRouter);
