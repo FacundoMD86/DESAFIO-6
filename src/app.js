@@ -15,13 +15,29 @@ import ProductMongoManager from "./dao/mongomanagers/productManagerMongo.js";
 import MessagesManager from "./dao/mongomanagers/messageManagerMongo.js";
 import ProductManager from './productos/ProductsManager.js';
 import router from "./router/view.router.js";
+import cookieParser from "cookie-parser";
+import expressSession from "express-session";
+import MongoStore from "connect-mongo";
 
 const productManager = new ProductManager("./src/files/Productos.json");
 
 //Midlewares
 const app = express();
+//app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
+app.use(cookieParser(process.env.SECRET_COOKIE));
+app.use(
+  expressSession({
+    store: MongoStore.create({
+      mongoUrl: process.env.LINK_DB,
+      ttl: 60 * 60 * 24 * 7,
+    }),
+    secret: process.env.SECRET_SESSION,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 //Puerto de enlace
 const PORT = 8080;
@@ -45,9 +61,6 @@ app.set('view engine', 'handlebars');
 app.get("/", (req, res)=>{
     res.render("realtimeproducts");
 });
-app.get("/", (req, res)=>{
-  res.render("chat");
-});
 
 //Routers
 app.use("/api/products", ProductRouter);
@@ -57,6 +70,8 @@ app.use('/api', indexRouter)
 app.use(errorHandler);
 app.use(notFoundHandler);
 app.use("/",router);
+app.use("/auth", auth_router);
+
 
 const server = app.listen(PORT, () =>{
     console.log(`Express por Local Host ${server.address().port}`)
@@ -114,5 +129,5 @@ socketServer.on("connection",async (socket)=>{
 })
 
 
-
+export default app
 

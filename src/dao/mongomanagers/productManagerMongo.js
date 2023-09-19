@@ -3,7 +3,7 @@ import  {productsModel}  from "../models/products.model.js"
   export default class ProductMongoManager{
 
   
-    getProducts = async () => {
+getProducts = async () => {
       try {
           return await productsModel.find().lean();
       } catch (err) {
@@ -22,7 +22,7 @@ import  {productsModel}  from "../models/products.model.js"
 
 }
 
-addProduct = async (product) => {
+createProduct = async (product) => {
   try {
       await productsModel.create(product);
       return await productsModel.findOne({ title: product.title })

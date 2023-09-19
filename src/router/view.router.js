@@ -1,6 +1,7 @@
 import { Router } from  "express";
-import ProductManager from "../productos/ProductsManager.js";
-import __dirname  from "../utils.js"
+//import ProductManager from "../productos/ProductsManager.js";
+import ProductManager from "../dao/mongomanagers/productManagerMongo.js";
+import __dirname  from "../utils.js";
 
 const pmanager=new ProductManager(__dirname+'/files/products.json')
 

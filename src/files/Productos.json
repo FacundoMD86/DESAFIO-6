@@ -128,5 +128,35 @@
 		"category": "Filtros",
 		"thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_787777-MLA71397784497_082023-F.webp",
 		"id": "1011"
+	},
+	{
+		"title": "codo 90 ",
+		"description": "fusion",
+		"code": "20",
+		"price": "1500",
+		"stock": "100",
+		"category": "piezas fusion",
+		"thumbnail": "()",
+		"id": "10111"
+	},
+	{
+		"title": "codo 90 H",
+		"description": "inserto ",
+		"code": "21",
+		"price": "2000",
+		"stock": "100",
+		"category": "pieza fusion",
+		"thumbnail": "()",
+		"id": "101111"
+	},
+	{
+		"title": "cupla 25 ",
+		"description": "fusion",
+		"code": "22",
+		"price": "1500",
+		"stock": "100",
+		"category": "pieza fusion",
+		"thumbnail": "()",
+		"id": "1011111"
 	}
 ]

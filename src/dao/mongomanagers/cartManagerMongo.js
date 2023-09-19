@@ -29,7 +29,7 @@ class CartManager {
     };
     
 
-    addCart = async (products) => {
+    createCarts = async (products) => {
         try {
             let cartData = {};
             if (products && products.length > 0) {
@@ -45,7 +45,7 @@ class CartManager {
     };
     
 
-    addProductInCart = async (cid, obj) => {
+    updateCarts = async (cid, obj) => {
         try {
             const filter = { _id: cid, "products._id": obj._id };
             const cart = await cartModel.findById(cid);

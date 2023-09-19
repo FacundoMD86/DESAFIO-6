@@ -1,10 +1,10 @@
-const socketClient=io()
-
 import ProductsManager from '../productos/ProductsManager.js';
 import CartManager from '../productos/CartManager.js';
 
 const deposito = new ProductsManager('./files/Productos.json');
 const cartDepo = new CartManager('./files/carts.json');
+
+const socketClient=io()
 
 const formulario =document.getElementById("formulario")
 const usuario =document.getElementById("usuario")
