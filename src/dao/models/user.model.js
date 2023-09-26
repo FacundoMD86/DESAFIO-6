@@ -10,4 +10,4 @@ let schema = new Schema({
     password: { type: String, required: true }
 })
 let User = model (collection, schema)
-export default User;
+export default User

@@ -1,13 +1,13 @@
 import { Router } from "express";
-import User from "../models/user.model.js";
+//import User from "../dao/models/user.model";
 
 const authRouter = Router();
 
 authRouter.post(
   "/register",
-  is_form_ok,
-  is_8_char,
-  create_hash,
+  //is_form_ok,
+  //is_8_char,
+  //create_hash,
   passport.authenticate("register"),
   async (req, res, next) => {
     try {
@@ -42,7 +42,6 @@ authRouter.post(
         .json({
           status: 200,
           user: req.user,
-          //session: req.session,
           response: req.session.mail + " inicio sesión",
           token: req.session.token,
         });
@@ -52,7 +51,7 @@ authRouter.post(
   }
 );
 
-authRouter.post(
+/*authRouter.post(
   "/signout",
   passport.authenticate('jwt'),
   async (req, res, next) => {
@@ -69,5 +68,6 @@ authRouter.post(
       next(error);
     }
   }
-);
+);*/
 
+export default authRouter
