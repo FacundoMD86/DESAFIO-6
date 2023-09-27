@@ -1,12 +1,14 @@
 import { Router } from "express";
-//import User from "../dao/models/user.model";
+import User from "../dao/models/user.model";
+import is_form_ok from "../middlewares/is_form_ok.js";
+import is_8_char from "../middlewares/is_8_char.js";
 
 const authRouter = Router();
 
 authRouter.post(
   "/register",
-  //is_form_ok,
-  //is_8_char,
+  is_form_ok,
+  is_8_char,
   //create_hash,
   passport.authenticate("register"),
   async (req, res, next) => {
@@ -26,9 +28,9 @@ authRouter.post(
 authRouter.post(
   "/login",
   is_8_char,
-  passport.authenticate("login"),
-  is_valid_pass,
-  create_token,
+  //passport.authenticate("login"),
+  //is_valid_pass,
+  //create_token,
   async (req, res, next) => {
     try {
       req.session.mail = req.body.mail;
@@ -51,9 +53,9 @@ authRouter.post(
   }
 );
 
-/*authRouter.post(
+authRouter.post(
   "/signout",
-  passport.authenticate('jwt'),
+  //passport.authenticate('jwt'),
   async (req, res, next) => {
     try {
       console.log(req.session);
@@ -68,6 +70,6 @@ authRouter.post(
       next(error);
     }
   }
-);*/
+);
 
 export default authRouter

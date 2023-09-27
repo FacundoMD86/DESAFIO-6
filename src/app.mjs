@@ -10,8 +10,8 @@ import viewRouter from './router/view.router.js';
 import ProductRouter from "./router/product.router.js";
 import CartRouter from "./router/carts.router.js";
 import { connect } from "mongoose";
-import errorHandler from './midlewares/errorHandler.js';
-import notFoundHandler from './midlewares/notFoundHandler.js';
+import errorHandler from './middlewares/errorHandler.js';
+import notFoundHandler from './middlewares/notFoundHandler.js';
 //import indexRouter from './router/indexRouter.js';
 import ProductMongoManager from "./dao/mongomanagers/productManagerMongo.js";
 import MessagesManager from "./dao/mongomanagers/messageManagerMongo.js";
@@ -84,7 +84,7 @@ app.get("/home", (req, res) => {
 
 //Routers
 app.use(express.static(`${__dirname}/public`));
-app.use("/auth", auth_router);
+app.use("/auth", authRouter);
 app.use("/api/products", ProductRouter);
 app.use("/api/carts", CartRouter);
 app.use("/api/view", viewRouter);
