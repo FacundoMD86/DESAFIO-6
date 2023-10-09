@@ -12,28 +12,56 @@ import CartRouter from "./router/carts.router.js";
 import { connect } from "mongoose";
 import errorHandler from './middlewares/errorHandler.js';
 import notFoundHandler from './middlewares/notFoundHandler.js';
-//import indexRouter from './router/indexRouter.js';
+import indexRouter from './router/indexRouter.js';
 import ProductMongoManager from "./dao/mongomanagers/productManagerMongo.js";
 import MessagesManager from "./dao/mongomanagers/messageManagerMongo.js";
 import ProductManager from './productos/ProductsManager.js';
 import router from "./router/view.router.js";
-import cookieParser from "cookie-parser";
+//import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
+import { MongoClient } from 'mongodb';
+//const {MongoClient} = require('mongodb')
+import expressSession from 'express-session';
+import session_router from './router/sessions.js';
+import cookies_router from './router/cookies.js';
+
+const app = express();
 
 dotenv.config();
 
 const productManager = new ProductManager("./src/files/Productos.json");
 
+const uri = process.env.URI; 
+
+//const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const client = new MongoClient('mongodb+srv://facundomd:11223344@fmd.cqejc72.mongodb.net/ecommerce')
+
+async function start(){
+  await client.connect()
+  console.log("Connected")
+  module.exports = client.db()
+  //const app = require('./app')
+  //app.listen(PORT)
+}
+start()
+
 const sessionStore = MongoStore.create({
   mongoUrl: process.env.URI, 
+  autoReconnect: true,
   ttl: 60 * 60 * 24 * 7, 
 });
+
 //Midlewares
-const app = express();
+app.use(expressSession({
+  secret: process.env.SECRET_SESSION,
+  resave: true,
+  saveUninitialized: true
+}))
 //app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
-app.use(cookieParser(process.env.URI));
+//app.use(cookieParser(process.env.URI));
 app.use(
   session({
     store: sessionStore,
@@ -42,17 +70,8 @@ app.use(
     saveUninitialized: true,
   })
 );
-/*app.use(
-  expressSession({
-    store: MongoStore.create({
-      mongoUrl: process.env.URI,
-      ttl: 60 * 60 * 24 * 7,
-    }),
-    secret: process.env.URI,
-    resave: true,
-    saveUninitialized: true,
-  })
-);*/
+app.use(errorHandler);
+app.use(notFoundHandler);
 
 //Puerto de enlace
 const PORT = 8080;
@@ -64,22 +83,25 @@ const ready = ()=> {
     .then(()=>console.log('database connected'))
     .catch(err=>console.log(err))
 };
-//const mongoose = require("mongoose");
 
 //Static
 app.use(express.static((`${__dirname}/public`)));
 
 // Handlebars
 app.engine('handlebars', handlebars.engine());
+
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'handlebars');
 
 app.get("/", (req, res)=>{
     res.render("realtimeproducts");
 });
-
 app.get("/home", (req, res) => {
   res.render("home");
+});
+app.get('/', (req, res) =>{
+  req.session.cuenta = req.session.cuenta ? req.session.cuenta + '1' : '1';
+  res.send(`Hola! Has visto esta pagina : ${req.session.cuenta}`);
 });
 
 //Routers
@@ -88,9 +110,9 @@ app.use("/auth", authRouter);
 app.use("/api/products", ProductRouter);
 app.use("/api/carts", CartRouter);
 app.use("/api/view", viewRouter);
-app.use('/api', indexRouter)
-app.use(errorHandler);
-app.use(notFoundHandler);
+app.use('/api', indexRouter);
+app.use('/cookies', cookies_router);
+app.use('/sessions', session_router);
 app.use("/",router);
 
 const server = app.listen(PORT, () =>{
@@ -107,7 +129,6 @@ const pmanagersocket=new ProductMongoManager()
 
 //Importar MessagesManager
 const messagesManager = new MessagesManager();
-
 
 socketServer.on("connection",async (socket)=>{
     console.log("cliente conectado con id:" ,socket.id)
