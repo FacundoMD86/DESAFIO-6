@@ -1,0 +1,114 @@
+body {
+  background-image: url(https://cdn-3.expansion.mx/dims4/default/6be8e63/2147483647/strip/true/crop/6000x4000+0+0/resize/1800x1200!/format/webp/quality/80/?url=https%3A%2F%2Fcherry-brightspot.s3.amazonaws.com%2F68%2F41%2Fcb61be9e443586aa84106f167dcc%2Fshutterstock-765857422.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.Titulo {
+  color:azure;
+}
+.Titulo2 {
+  color:azure;
+}
+.chatTitle {
+  margin-bottom: 30px;
+}
+.pics{
+  display: flex-end;
+  justify-content: left;
+}
+section{
+  display: flex;
+  width: 600px;
+  height: 430px;
+}
+
+section img{
+  width: 0px;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: .8;
+  transition: .5s ease;
+}
+
+section img:hover{
+  cursor: crosshair;
+  width: 300px;
+  opacity: 1;
+  filter: contrast(120%);
+}
+
+.chatTitle {
+  margin-bottom: 30px;
+}
+
+.chatContainer {
+  width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 20px;
+  border: 2px solid black;
+  box-shadow: 0px 0px 5px rgb(126, 126, 126);
+}
+.chatContainer header {
+  position: relative;
+}
+.chatContainer header .userName {
+  margin-bottom: 15px;
+}
+.chatContainer header .typing {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 200px;
+}
+.chatContainer main {
+  width: 100%;
+}
+.chatContainer main .chatMessage {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-shadow: 0px 0px 5px rgb(126, 126, 126);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  .connection {
+    align-self: center;
+  }
+}
+.chatContainer main .chatMessage .connection {
+  align-self: center;
+}
+.chatContainer main .chatMessage .messageUser {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+}
+.chatContainer main .chatMessage .otherUser {
+  align-items: flex-end;
+}
+.chatContainer footer {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.chatContainer footer input {
+  all: unset;
+  width: 240px;
+  border-bottom: 2px solid black;
+  padding: 0px 0px 5px 5px;
+}
